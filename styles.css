@@ -1,0 +1,274 @@
+:root {
+    --base-font-size: 16px;
+    --title-font-size: 2.5rem;
+    --subtitle-font-size: 1.5rem;
+    --paragraph-font-size: 1rem;
+    --sidebar-width: 200px; /* 确保这个变量已定义 */
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-size: var(--base-font-size);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 50, 100, 0.5); /* 蓝色滤镜 */
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.page-container {
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end; /* 保持右对齐 */
+    align-items: center;
+    padding-right: 30%; /* 调整这个值，与 .content 的 right 值对应 */
+    transition: none; /* 保持无过渡效果 */
+}
+
+.content {
+    color: white;
+    width: 50%; /* 保持内容宽度 */
+    padding: 20px;
+    text-align: left;
+    overflow-y: auto; /* 添加垂直滚动条 */
+    max-height: 90vh; /* 限制最大高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: calc(14px + 0.4vw); /* 基础字体大小 */
+    position: fixed; /* 固定位置 */
+    right: 30%; /* 调整这个值来向左移动，之前是 20% */
+    top: 50%; /* 垂直居中 */
+    transform: translateY(-50%); /* 精确垂直居中 */
+}
+
+.content h1 {
+    font-size: var(--title-font-size);
+    font-weight: 700;
+    margin-bottom: 2vh;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.content h2 {
+    font-size: var(--subtitle-font-size);
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 3vh;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.description {
+    font-weight: 300;
+    font-size: var(--paragraph-font-size);
+    line-height: 1.6;
+}
+
+.description p {
+    margin-bottom: 1.5vh;
+}
+
+.menu-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    z-index: 1001; /* 确保在侧边栏之上 */
+    transition: left 0.3s;
+}
+
+#sidebar {
+    height: 100%;
+    width: var(--sidebar-width);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: transparent; /* 改为透明 */
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    transform: translateX(0); /* 默认显示 */
+}
+
+#sidebar.closed {
+    transform: translateX(calc(-1 * var(--sidebar-width) + 40px)); /* 只留下一小部分可见 */
+}
+
+#sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: var(--sidebar-width);
+}
+
+#sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: white; /* 确保文字颜色为白色，以便在透明背景上可见 */
+    display: block;
+    white-space: nowrap;
+}
+
+#sidebar a:hover {
+    color: #f1f1f1; /* 保持悬停效果 */
+}
+
+#sidebar a.active {
+    font-weight: bold;
+}
+
+#sidebar.open {
+    width: var(--sidebar-width);
+}
+
+@media screen and (max-width: 1200px) {
+    :root {
+        --title-font-size: 2.2rem;
+        --subtitle-font-size: 1.3rem;
+    }
+    .content h1 {
+        font-size: 3vw;
+    }
+    .content h2 {
+        font-size: 1.5vw;
+    }
+    .description {
+        font-size: 0.9vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    :root {
+        --title-font-size: 2rem;
+        --subtitle-font-size: 1.2rem;
+        --paragraph-font-size: 0.9rem;
+    }
+    main {
+        padding-left: 0;
+    }
+    .content {
+        max-width: 80%;
+        margin-right: 3%; /* 在小屏幕上减少右边距 */
+        font-size: calc(13px + 0.4vw);
+    }
+    .content h1 {
+        font-size: 3.5vw;
+    }
+    .content h2 {
+        font-size: 1.75vw;
+    }
+    .description {
+        font-size: 1vw;
+        max-width: 100%;
+    }
+    #sidebar a {
+        font-size: 0.9rem; /* 在小屏幕上进一步减小字体大小 */
+    }
+    .page-container {
+        padding-left: 0; /* 在小屏幕上移除左侧内边距 */
+    }
+    .page-container.sidebar-open {
+        padding-left: var(--sidebar-width);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --title-font-size: 1.8rem;
+        --subtitle-font-size: 1.1rem;
+        --paragraph-font-size: 0.85rem;
+    }
+    .content h1 {
+        font-size: 4.5vw;
+    }
+    .content h2 {
+        font-size: 2.5vw;
+    }
+    .description {
+        font-size: 1.5vw;
+    }
+}
+
+/* 调整主要内容区域的样式 */
+.main-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    margin-left: 250px; /* 为侧边栏留出空间 */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 确保侧边栏固定在左侧 */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    z-index: 2;
+    overflow-y: auto;
+}
+
+/* 调整视频背景样式 */
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+/* 如果侧边栏内的元素需要背景，可以单独为它们添加样式 */
+#sidebar .sidebar-content {
+    background-color: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+    height: 100%;
+    padding: 20px;
+}
+
+/* 调整侧边栏关闭时的样式 */
+.page-container.sidebar-closed {
+    padding-left: 40px;
+    padding-right: calc(10% + var(--sidebar-width) - 40px);
+}
+
