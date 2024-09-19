@@ -389,14 +389,14 @@ body {
 
 /* News page 特定样式 */
 .news-page .news-container {
-    padding-left: var(--sidebar-width);
-    padding-right: var(--sidebar-width);
+    padding-left: calc(var(--sidebar-width) * 0.5); /* Multiply the sidebar width by 0.8 */
+    padding-right: calc(var(--sidebar-width) * 0.5); 
      /* display: flex;
      justify-content: flex-start; */
      min-height: 100vh;
  }
  .news-page .news-content {
-    width: calc(100% - var(--sidebar-width)); /* 宽度为屏幕宽度减去侧边栏宽度 */
+    width: calc(100% - var(--sidebar-width)) ; /* 宽度为屏幕宽度减去侧边栏宽度 */
     max-width: none; /* 移除最大宽度限制 */
     margin: 0; /* 移除自动边距 */
     box-sizing: border-box;
