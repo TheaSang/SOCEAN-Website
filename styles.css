@@ -3,7 +3,7 @@
     --title-font-size: 2.5rem;
     --subtitle-font-size: 1.5rem;
     --paragraph-font-size: 1rem;
-    --sidebar-width: 200px; /* 确保这个变量已定义 */
+    --sidebar-width: 250px; /* 确保这个变量已定义 */
 }
 
 body, html {
@@ -13,6 +13,165 @@ body, html {
     font-family: Arial, sans-serif;
     overflow: hidden;
 }
+
+
+/* 默认背景色（如果需要的话） */
+body {
+    background-color: #ffffff; /* 或者其他默认颜色 */
+}
+
+/* Home page 特定样式 */
+.home-page .page-container {
+    justify-content: center; /* 居中对齐内容 */
+}
+
+.home-page .content {
+    max-width: 800px; /* 设置最大宽度 */
+    margin: 0 auto; /* 居中内容 */
+    padding: 40px;
+    box-sizing: border-box;
+    color: white;
+    text-align: left;
+    overflow-y: auto; /* 添加垂直滚动条 */
+    max-height: 90vh; /* 限制最大高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: calc(14px + 0.4vw); /* 基础字体大小 */
+    position: fixed; /* 固定位置 */
+    right: 30%; /* 调整这个值来向左移动，之前是 20% */
+    top: 50%; /* 垂直居中 */
+    transform: translateY(-50%); /* 精确垂直居中 */
+}
+
+/* Team page 特定样式 */
+.team-page {
+    /* background: url('teamback.jpg') no-repeat center center fixed; 设置背景图片 */
+    /* background-size: cover; /* 确保背景图片覆盖整个页面 */
+     /* background-color: rgb(7, 76, 8); */
+}
+/* .team-page::before { */
+    /* content: ""; */
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* background: rgba(7, 30, 105, 0.5); 半透明深蓝色覆盖层 */
+    /* z-index: -1; 确保覆盖层在背景图片之上，内容之下 */
+/* } */
+
+
+.team-page .page-container {
+    padding-left: var(--sidebar-width);
+    display: flex;
+    justify-content: flex-start;
+
+
+}
+
+.team-page .content {
+    width: calc(100% - var(--sidebar-width)); /* 宽度为屏幕宽度减去侧边栏宽度 */
+    max-width: none; /* 移除最大宽度限制 */
+    margin: 0; /* 移除自动边距 */
+    padding: 40px;
+    box-sizing: border-box;
+    color: black; /* 设置内容颜色 */
+    position: relative; /* 取消固定位置 */
+    right: auto; /* 取消右侧偏移 */
+    top: auto; /* 取消顶部偏移 */
+    transform: none; /* 取消变换 */
+    
+}
+
+.team-page .team-members {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* 允许卡片换行 */
+    gap: 40px;
+    width: 100%;
+}
+
+.team-page .team-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex: 1 1 calc(33.333% - 40px); /* 调整卡片宽度，考虑间隔 */
+    min-width: 300px; /* 设置最小宽度 */
+    max-width: 300px; /* 设置最大宽度 */
+    display: flex;
+    flex-direction: column;
+}
+
+.team-page .team-card img {
+    width: 100%;
+    height: 300px; /* 固定图片高度 */
+    object-fit: cover;
+    object-position: center top;
+}
+
+/* 特定样式调整 Jeanne 的照片位置 */
+.team-page .jeanne-card img {
+    object-position: center 20%; /* 调整 Jeanne 照片的位置 */
+}
+
+.team-page .team-card h3 {
+    margin: 20px 0 15px;
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.3em;
+}
+
+.team-page .team-card p {
+    margin: 0 0 20px;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1em;
+    padding: 0 20px;
+    flex-grow: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .team-page .team-members {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .team-page .team-card {
+        flex: 1 1 calc(50% - 20px);
+        max-width: 300px; /* 保持最大宽度 */
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-page .page-container {
+        padding-left: 0;
+    }
+
+    .team-page .content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .team-page .team-card {
+        flex: 1 1 100%;
+        max-width: 300px; /* 保持最大宽度 */
+    }
+}
+
+/* 视频背景样式（仅适用于 home page） */
+.home-page .video-background {
+    /* 保持原有的视频背景样式 */
+}
+
+/* 确保 team page 不显示视频背景 */
+.team-page .video-background {
+    display: none;
+}
+
 
 .video-background {
     position: fixed;
@@ -31,7 +190,8 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 50, 100, 0.5); /* 蓝色滤镜 */
+    background: rgba(0, 0, 0, 0.3); /* 恢复较亮的滤镜 */
+ 
 }
 
 .video-background video {
@@ -49,15 +209,21 @@ body, html {
 .page-container {
     position: relative;
     z-index: 1;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
-    justify-content: flex-end; /* 保持右对齐 */
-    align-items: center;
-    padding-right: 30%; /* 调整这个值，与 .content 的 right 值对应 */
-    transition: none; /* 保持无过渡效果 */
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: var(--sidebar-width);
+    transition: padding-left 0.3s;
+
 }
 
 .content {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
     color: white;
     width: 50%; /* 保持内容宽度 */
     padding: 20px;
@@ -109,6 +275,58 @@ body, html {
     z-index: 1001; /* 确保在侧边栏之上 */
     transition: left 0.3s;
 }
+.team-page #sidebar {
+    background-color: #005477;
+}
+.news-page #sidebar {
+    background-color: #005477;
+}
+.gallery-page #sidebar {
+    background-color: #005477;
+}
+.contact-page #sidebar {
+    background-color: #005477;
+}
+
+.news-sidebar {
+    width: var(--sidebar-width);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right:0;
+    left:auto;
+    background-color: #f1f1f1;
+    overflow-x: hidden;
+    padding-top: 60px;
+    
+}
+
+.news-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.news-sidebar a {
+    padding: 8px 6px 6px 32px;
+    text-decoration: none;
+    /* font-size: 0.8rem; */
+    color:#005477;
+    display: block;
+}
+
+.news-sidebar a:hover {
+    color: #f1f1f1;
+    background-color: #818181;
+}
+
+.news-container {
+    margin-left: calc(var(--sidebar-width));
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
 
 #sidebar {
     height: 100%;
@@ -125,7 +343,8 @@ body, html {
 }
 
 #sidebar.closed {
-    transform: translateX(calc(-1 * var(--sidebar-width) + 40px)); /* 只留下一小部分可见 */
+    transform: translateX(calc(-1 * var(--sidebar-width) + 70px)); /* 只留下一小部分可见 */
+
 }
 
 #sidebar ul {
@@ -155,6 +374,149 @@ body, html {
 #sidebar.open {
     width: var(--sidebar-width);
 }
+
+/* contact page 特定样式 */
+.contact-page .contact-container {
+    padding-left: var(--sidebar-width);
+    min-height: 100vh;
+ }
+/* Gallery page 特定样式 */
+.gallery-page .gallery-container {
+    padding-left: var(--sidebar-width);
+   
+     min-height: 100vh;
+ }
+
+/* News page 特定样式 */
+.news-page .news-container {
+    padding-left: var(--sidebar-width);
+    padding-right: var(--sidebar-width);
+     /* display: flex;
+     justify-content: flex-start; */
+     min-height: 100vh;
+ }
+ .news-page .news-content {
+    width: calc(100% - var(--sidebar-width)); /* 宽度为屏幕宽度减去侧边栏宽度 */
+    max-width: none; /* 移除最大宽度限制 */
+    margin: 0; /* 移除自动边距 */
+    box-sizing: border-box;
+    color: black; /* 设置内容颜色 */
+    position: relative; /* 取消固定位置 */
+    right: auto; /* 取消右侧偏移 */
+    top: auto; /* 取消顶部偏移 */
+    transform: none; /* 取消变换 */
+    padding-bottom: 50px;
+    
+}
+/* Team page 特定样式 */
+.team-page .teampage-container {
+   padding-left: var(--sidebar-width);
+    display: flex;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+.team-page .teampage-content {
+    width: 100%; /* 宽度为屏幕宽度减去侧边栏宽度 */
+    max-width: none; /* 移除最大宽度限制 */
+    margin: 0; /* 移除自动边距 */
+    padding: 40px;
+    box-sizing: border-box;
+    position: relative;
+}
+.teampage-content h1{
+    font-size: var(--title-font-size);
+    font-weight: 700;
+    margin-bottom: 6vh;
+    /* text-shadow: 2px 2px 4px rgba(0,0,0,0.5); */
+    color:#005477;
+
+}
+
+.team-members {
+    display: flex;
+    justify-content: center; /* Center align the cards */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    gap: 40px; /* Maintain consistent gap */
+    max-width: 1200px; /* Maximum width of the container */
+    margin: 0 auto; /* Center align the container */
+    width: 100%; /* Full width on smaller screens */
+}
+
+.team-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+    max-width: 400px; /* 调整最大宽度，考虑间距 */
+    width: calc((100% - 80px) / 3); /* 设置固定宽度 */
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 3 / 4; 
+    justify-content: flex-end;
+}
+
+.team-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   
+    /* object-position: center top; */
+}
+.team-card.jeanne-card img {
+    
+    object-position: center 20%; /* 调整图片的位置 */
+}
+
+
+.team-card h3 {
+    margin: 20px 5px 15px;
+    text-align: center;
+    color: #2c3e50;
+    font-size: 1.3em;
+}
+
+.team-card p {
+    margin: 0 0 20px;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1em;
+    padding: 0 20px;
+    flex-grow: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .team-members {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .team-card {
+        max-width: calc(50% - 20px);
+        width: calc(50% - 20px);
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding-left: 0;
+    }
+
+    .team-page .content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .team-card {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 
 @media screen and (max-width: 1200px) {
     :root {
@@ -271,4 +633,41 @@ body, html {
     padding-left: 40px;
     padding-right: calc(10% + var(--sidebar-width) - 40px);
 }
+
+
+.news-link {
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border-left: 5px solid #005477;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+.news-link:hover {
+    background-color: #005477;
+    color: #fff;
+}
+
+/* Specific style for #news1 */
+#news1 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #005477;
+    margin-bottom: 10px;
+}
+
+/* Style for news details */
+.news-details {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: normal;
+    color: #666;
+    margin-top: 5px;
+}
+
 
